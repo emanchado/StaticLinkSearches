@@ -1,0 +1,43 @@
+#import(java.net.URLDecoder)
+<%@ var search_engines:(Seq[org.demiurgo.operalink.SearchEngine]) %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Static Opera Link search engines</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style>
+      body {
+        font-family: Georgia, Verdana, Helvetica, sans-serif;
+        font-size: 12px;
+      }
+
+      input {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+#foreach (engine <- search_engines)
+    <h1><%= engine.title %> (<tt><%= engine.key %></tt>)</h1>
+
+    <form
+#if (engine.isPost)
+       method="post"
+#end
+       action="<%= engine.baseUri %>">
+#for (param <- engine.params.keys)
+#if (engine.params(param) == "%s")
+#if (engine.rawIcon != "")
+      <img src="data:image/png;base64,<%= engine.rawIcon %>" alt="" />
+#end
+      <input type="text" name="<%= param %>" value="" />
+#else
+      <input type="hidden" name="<%= param %>" value="<%= URLDecoder.decode(engine.params(param), engine.encoding) %>" />
+#end
+#end
+      <input type="submit" name="static-link-searches-submit" value="Search" />
+    </form>
+
+#end
+  </body>
+</html>
