@@ -1,4 +1,4 @@
-name := "OperaLink"
+name := "StaticLinkSearches"
 
 version := "0.1"
 
