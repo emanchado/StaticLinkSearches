@@ -1,3 +1,16 @@
+DEPRECATED
+==========
+
+This program is deprecated. It probably doesn't work anymore on more recent versions of Scala anyway.
+
+
+
+
+
+
+Old README contents
+===================
+
 This is a proof of concept, small sample utility using the
 [Scala Opera Link library](https://github.com/emanchado/Scala-OperaLink).
 
